@@ -303,6 +303,16 @@ Método responsável pela exclusão do planeta
 ```
 
 ## Executando o projeto localmente
+
+### Utilizando o Vagrant
+
+Para rodar o projeto localmente utilizando o Vagrant, clone esse repositório, vá até pasta Vagrant pelo terminal e execute o comando:
+`vagrant up`.
+
+Ao término da execução do comando, o projeto terá sua infraestrutura provisionada e estará rodando na porta 8080.
+
+### Baixando e executando
+
 Para executar o projeto localmente parte-se do pressuposto que você tenha o Java 8 instalado em sua máquina.
 
 Com isso, o Spring Boot nos facilita  bastante, basta baixar esse projeto em .ZIP, ou cloná-lo para a pasta de sua preferência.
