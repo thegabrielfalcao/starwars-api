@@ -1,0 +1,22 @@
+$script_provision = <<-SCRIPT
+  apt -y update
+  apt -y install openjdk-8-jdk
+  mkdir /home/vagrant/b2w-starwars
+  git -C /home/vagrant/b2w-starwars/ clone https://github.com/GabrielFalcaoB2W/b2w-starwars-api.git
+  apt-get -y install maven
+SCRIPT
+
+Vagrant.configure("2") do |config|
+  
+  config.vm.box = "ubuntu/bionic64"
+  config.vm.network "forwarded_port", guest: 8080, host: 8080
+
+  config.vm.provision "shell", inline: $script_provision
+  config.vm.provision "shell", inline: "cd /home/vagrant/b2w-starwars/b2w-starwars-api/ && mvn spring-boot:run", run: 'always'
+
+  class VagrantPlugins::ProviderVirtualBox::Action::Network
+    def dhcp_server_matches_config?(dhcp_server, config)
+      true
+    end
+  end
+end
