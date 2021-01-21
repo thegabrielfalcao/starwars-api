@@ -1,0 +1,27 @@
+version: "3"
+services:
+  mongo:
+    image: mongo
+    container_name: mongo
+    networks:
+     - minha-rede
+
+  app:
+    build:
+      dockerfile: ./docker/Dockerfile
+      context: .
+    image: thegabrielfalcao/b2w-starwars-api
+    ports:
+      - "8080:8080"
+    environment:
+      - "DATABASE_NAME=B2WAPI"
+      - "DATABASE_URI=mongo"
+      - "APP_PATH=localhost"
+    networks:
+     - minha-rede
+    depends_on:
+     - mongo
+
+networks:
+  minha-rede:
+    driver: bridge

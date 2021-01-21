@@ -44,20 +44,6 @@ public class PlanetClientTest {
 	}
 	
 	@Test
-	public void findByName() throws Exception {
-		mockMvc.perform(get("/api/planets/").queryParam("name", "Tatooine"))
-							.andExpect(status().isOk())
-							.andExpect(jsonPath("$.content[*].name").value("Tatooine"));
-	}
-	
-	@Test
-	public void findById() throws Exception {
-		mockMvc.perform(get("/api/planets/5f31ddac7cc70566188aa13d"))
-		.andExpect(status().isOk())
-		.andExpect(jsonPath("$.name").value("Yavin IV"));
-	}
-	
-	@Test
 	public void createAndRemove() throws Exception {
 		Planet planet = new Planet();
 		planet.setId("Id");

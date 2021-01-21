@@ -68,13 +68,6 @@ public class PlanetControllerTests {
 	}
 	
 	@Test
-	public void findPlanetById() {
-		ResponseEntity<Planet> findById = controller.findById("5f31ddac7cc70566188aa13c");
-		assertTrue(findById.getBody() != null);
-		assertThat(findById.getBody().getName()).isEqualTo("Alderaan");
-	}
-	
-	@Test
 	public void findPlanetByIdWithError() {
 		NoSuchElementException exception = assertThrows(NoSuchElementException.class, () -> controller.findById("INEXISTENTE"));
 		assertTrue(exception.getMessage().contains("Not found on database"));
